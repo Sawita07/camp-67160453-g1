@@ -1,116 +1,167 @@
-<!-- file: resources/views/html101.blade.php -->
-<!Doctype html>
+@extends('template.default')
 
-<html>
-    <head>
-        <title>ส่วนหัวของ HTML</title>
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: "Sarabun", sans-serif;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container mt-4">
-            <h1>Workshop #HTML - FORM</h1>
-            <form>
-                <div class="row mt-3">
-                    <div class="col-sm-12 col-md-4">
-                     <label for="fname">ชื่อ</label>
+@section('title','Workshop FORM')
+
+@section('content')
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow p-4 w-100" style="max-width: 750px;">
+        <h2 class="text-center mb-4">Workshop #HTML - FORM</h2>
+
+        <form onsubmit="return validateForm()">
+
+
+            <div class="row mb-3 align-items-center">
+                <label for="fname" class="col-md-3 col-form-label">ชื่อ</label>
+                <div class="col-md-9">
+                    <input id="fname" class="form-control">
+                    <div class="invalid-feedback">โปรดระบุชื่อ</div>
+                </div>
+            </div>
+
+
+            <div class="row mb-3 align-items-center">
+                <label for="lname" class="col-md-3 col-form-label">สกุล</label>
+                <div class="col-md-9">
+                    <input id="lname" class="form-control">
+                    <div class="invalid-feedback">โปรดระบุนามสกุล</div>
+                </div>
+            </div>
+
+
+            <div class="row mb-3 align-items-center">
+                <label for="dob" class="col-md-3 col-form-label">วันเกิด</label>
+                <div class="col-md-9">
+                    <input type="date" id="dob" class="form-control">
+                </div>
+            </div>
+
+
+            <div class="row mb-3 align-items-center">
+                <label for="age" class="col-md-3 col-form-label">อายุ</label>
+                <div class="col-md-9">
+                    <input type="number" id="age" class="form-control">
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label class="col-md-3 col-form-label">เพศ</label>
+                <div class="col-md-9">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" value="male">
+                        <label class="form-check-label">ชาย</label>
                     </div>
-                    <div class="col">
-                        <input id="fname" class="form-control">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" value="female">
+                        <label class="form-check-label">หญิง</label>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-sm-12 col-md-4">
-                     <label for="lname">สกุล</label>
-                    </div>
-                    <div class="col">
-                        <input id="lname" class="form-control">
-                    </div>
+            </div>
+
+
+            <div class="row mb-3 align-items-center">
+                <label class="col-md-3 col-form-label">รูป</label>
+                <div class="col-md-9">
+                    <input type="file" id="photo" class="form-control">
                 </div>
-                <div class="row mt-3">
-                    <div class="col-sm-12 col-md-4">
-                     <label for="hbd">วัน/เดือน/ปีเกิด</label>
-                    </div>
-                    <div class="col">
-                        <input id="hbd" class="form-control" placeholder="dd/mm/yyyy">
-                    </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label for="address" class="col-md-3 col-form-label">ที่อยู่</label>
+                <div class="col-md-9">
+                    <textarea id="address" class="form-control" rows="3"></textarea>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-sm-12 col-md-4">
-                     <label for="lname">อายุ</label>
-                    </div>
-                    <div class="col">
-                        <input id="lname" class="form-control">
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-sm-12 col-md-4">
-                     <label for="lname">เพศ</label>
-                    </div>
-                    <div class="col">
-                    <input type="radio" name="gender" value="male"> ชาย
-                    <input type="radio" name="gender" value="female"> หญิง
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-sm-12 col-md-4">
-                     <label for="lname">รูป</label>
-                    </div>
-                    <div class="col">
-                    <input type="file" class="form-control">
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-sm-12 col-md-4">
-                     <label for="lname">ที่อยู่</label>
-                    </div>
-                    <div class="col">
-                        <input id="lname" class="form-control">
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-sm-12 col-md-4">
-                     <label for="lname">สีที่ชอบ</label>
-                    </div>
-                     <div class="col">
-                    <select class="form-control">
-                    <option>สีแดง</option>
-                    <option>สีม่วงพลาสเทล</option>
-                    <option>สีชมพูวิ้งๆ</option>
-                    <option>สีส้มส้ม</option>
+            </div>
+
+
+            <div class="row mb-3 align-items-center">
+                <label for="color" class="col-md-3 col-form-label">สีที่ชอบ</label>
+                <div class="col-md-9">
+                    <select id="color" class="form-control">
+                        <option value="">-- เลือกสี --</option>
+                        <option>สีม่วงพลาสเทล</option>
+                        <option>สีชมพูวิ้้งๆ</option>
+                        <option>สีแดงงง</option>
                     </select>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label class="col-md-3 col-form-label">แนวเพลง</label>
+                <div class="col-md-9">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="music" value="life">
+                        <label class="form-check-label">เพื่อชีวิต</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="music" value="thai">
+                        <label class="form-check-label">ลูกทุ่ง</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="music" value="another">
+                        <label class="form-check-label">อื่นๆ</label>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-sm-12 col-md-4">
-                     <label for="lname">แนวเพลงที่ชอบ</label>
-                    </div>
-                    <div class="col">
-                    <input type="radio" name="music type" value="survival"> เพื่อชีวิต
-                    <input type="radio" name="music type" value="thai traditional"> ลูกทุ่ง
-                    <input type="radio" name="music type" value="Another"> อื่นๆ
-                    </div>
-                    </div>
-                    <div class="row mt-3">
-                    <div class="col-sm-12 col-md-4">
-                        <input type="checkbox"> ยินยอมให้เก็บข้อมูล
+            </div>
+
+
+            <div class="row mb-4">
+                <div class="col-md-9 offset-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="agree">
+                        <label class="form-check-label">ยินยอมให้เก็บข้อมูล</label>
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-sm-12 col-md-4"></div>
-                    <div class="col">
-                    <button type="button" class="btn btn-light me-4">Reset</button>
-                    <button type="button" class="btn btn-success">Submit</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </body>
-</html>
+            </div>
+
+            
+            <div class="text-center">
+                <button type="reset" class="btn btn-light me-3">Reset</button>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+@endsection
+
+@push('scripts')
+<script>
+function validateForm() {
+    let valid = true;
+
+    const fname = document.getElementById('fname');
+    const lname = document.getElementById('lname');
+    const dob = document.getElementById('dob');
+    const age = document.getElementById('age');
+    const address = document.getElementById('address');
+    const color = document.getElementById('color');
+    const agree = document.getElementById('agree');
+
+    const gender = document.querySelector('input[name="gender"]:checked');
+    const music = document.querySelector('input[name="music"]:checked');
+
+    const fields = [fname, lname, dob, age, address, color];
+
+    fields.forEach(field => {
+        if (field.value === "") {
+            field.classList.add('is-invalid');
+            field.classList.remove('is-valid');
+            valid = false;
+        } else {
+            field.classList.remove('is-invalid');
+            field.classList.add('is-valid');
+        }
+    });
+
+    if (!gender || !music || !agree.checked) {
+        alert("กรุณากรอกข้อมูลให้ครบทุกช่อง และยินยอมให้เก็บข้อมูล");
+        valid = false;
+    }
+
+    return valid;
+}
+</script>
+@endpush
