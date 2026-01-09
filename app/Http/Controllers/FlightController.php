@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Flight
+use App\Models\Flight;
 
 class FlightController extends Controller
 {
@@ -12,7 +12,25 @@ class FlightController extends Controller
      */
     public function index()
     {
-        return view('flight.index');
+        $data['flight'] = Flight::all();
+        return view('flights.index', $data);
+    }
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+        // use App\Models\Flight; ใส่ข้างบนก่อน
+
+        $flight = new Flight;
+        $flight->name = $request->input('name');
+        $flight->airline = $request->input('airline');
+        $flight->number_of_seats = $request->input('number_of_seats');
+        $flight->price = $request->input('price');
+        $flight->save();
+
+        return redirect('/flights');
     }
 
     /**
@@ -23,21 +41,6 @@ class FlightController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $flight= new Flight;
-        $flight->name =$request->input('name');
-        $flight->airline =$request->input('airline');
-        $flight->number_of_seats = $request->('number')
-        $flight->price =$request->input('prive');
-        $flight->save();
-
-
-
-    }
 
     /**
      * Display the specified resource.
@@ -52,7 +55,10 @@ class FlightController extends Controller
      */
     public function edit(string $id)
     {
-        return view('flight')
+        $data['flight_update'] = Flight::find($id);
+        $data['flight'] = Flight::all();
+
+        return view('flights.update', $data);
     }
 
     /**
@@ -61,6 +67,16 @@ class FlightController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
+        $flight = Flight::find($id);
+        $flight->name = $request->input('name');
+        $flight->airline = $request->input('airline');
+        $flight->number_of_seats = $request->input('number_of_seats');
+        $flight->price = $request->input('price');
+        $flight->save();
+
+        return redirect('/flights');
+
     }
 
     /**
@@ -69,5 +85,8 @@ class FlightController extends Controller
     public function destroy(string $id)
     {
         //
+        $flight = Flight::find($id);
+        $flight->delete();
+        return redirect('/flights');
     }
 }

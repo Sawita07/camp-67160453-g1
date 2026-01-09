@@ -18,4 +18,6 @@ Route::get('/', [App\Http\Controllers\WorkshopFormController::class, 'index']);
 Route::post('/workshop', [App\Http\Controllers\WorkshopFormController::class, 'store'])
         ->name('workshop.store');
 
+Route::resource('/flights', App\Http\Controllers\FlightController::class);
+Route::resource('/pokedexs', App\Http\Controllers\PokedexController::class);
 
