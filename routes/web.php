@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkshopFormController;
-Route::get('/', function () {
-    return view('html101');
-});
+
 
 Route::get('/se',function(){
     return view('template.default');
